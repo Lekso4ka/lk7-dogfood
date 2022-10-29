@@ -1,0 +1,12 @@
+body {
+	margin: 0;
+	font-family: "Nunito", "Arial", "Helvetica", sans-serif;
+}
+.wrapper {
+	height: 100vh;
+	display: grid;
+	grid-template-columns: repeat(3, auto);
+	align-content: center;
+	justify-content: center;
+	gap: 20px;
+}
