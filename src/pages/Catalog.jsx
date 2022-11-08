@@ -5,7 +5,7 @@ export default ({goods}) => {
     return <div className="cards-container">
         {goods.map((d, i) => <Card 
             key={i}
-            img={d.picture}
+            img={d.pictures}
             text={d.name}
             price={d.price}
         />)}
