@@ -9,8 +9,6 @@ class Api {
                 "Authorization": `Bearer ${this.token}`
             }
         })
-        .then(res => res.json())
-        .then(data => data);
     }
     getProduct() {
 
@@ -29,6 +27,14 @@ class Api {
     }
     signUp() { // зарегистрироваться
 
+    }
+    showProfile() {
+        // return fetch(`${this.path}/v2/group-7/users/me`)
+        return fetch(`${this.path}/users/me`, {
+            headers: {
+                "Authorization": `Bearer ${this.token}`
+            }
+        })
     }
 }
 

@@ -33,11 +33,19 @@ const App = () => {
     //         });
     // }, []);
 
-    useEffect(async () => {
-        let data = await api.getProducts();
+    useEffect(() => {
+        api.getProducts()
+            .then(res => res.json())
+            .then(data => {
+                setGoods(data.products);
+                setData(data.products);
+            })
         // console.log("Данные из сервера", data);
-        setGoods(data.products);
-        setData(data.products);
+        api.showProfile()
+            .then(res => res.json())
+            .then(data => {
+                console.log("User", data);
+            })
     }, [])
 
     return <>
