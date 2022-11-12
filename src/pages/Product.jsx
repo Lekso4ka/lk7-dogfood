@@ -17,7 +17,7 @@ import {Container, Row, Col, Figure, Table, ButtonGroup, Button} from "react-boo
 export default () => {
     let p = data[0];
     const [cnt, setCnt] = useState(0);
-    return <Container>
+    return <Container style={{backgroundColor: "red", borderRadius: "20px"}}>
         <Row>
             <Col xs={12}>
                 <h1>{p.name}</h1>

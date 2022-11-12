@@ -1,11 +1,12 @@
 import React, {useState} from "react";
 import Logo from "../Logo";
+import {BoxArrowInRight, BoxArrowLeft} from "react-bootstrap-icons"
 import "./style.css";
 import {ReactComponent as FavIcon} from "./img/ic-favorites.svg";
 import {ReactComponent as CartIcon} from "./img/ic-cart.svg";
 import {ReactComponent as ProfileIcon} from "./img/ic-profile.svg";
 
-export default ({products, update, openPopup}) => {
+export default ({products, update, openPopup, user, setToken}) => {
     const [text, changeText] = useState("");
     const [cnt, setCnt] = useState(0);
     const handler = e => {
@@ -18,14 +19,21 @@ export default ({products, update, openPopup}) => {
             update(result);
         }
     }
+    const logout = e => {
+        e.preventDefault();
+        localStorage.removeItem("shop-user");
+        setToken(false);
+    }
     return <>
         <header>
             <Logo/>
             <input type="search" value={text} onChange={handler}/>
             <nav>
-                <a href=""><FavIcon/></a>
-                <a href=""><CartIcon/></a>
-                <a href="" onClick={e => {e.preventDefault(); openPopup(true)}}><ProfileIcon/></a>
+                {user && <a href=""><FavIcon/></a>}
+                {user && <a href=""><CartIcon/></a>}
+                {user && <a href=""><ProfileIcon/></a>}
+                {user && <a href="" onClick={logout}><BoxArrowLeft style={{fontSize: "1.6rem"}}/></a>}
+                {!user && <a href="" onClick={e => {e.preventDefault(); openPopup(true)}}><BoxArrowInRight style={{fontSize: "1.6rem"}}/></a>}
             </nav>
         </header>
         <div>

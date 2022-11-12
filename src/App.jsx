@@ -34,27 +34,30 @@ const App = () => {
     // }, []);
 
     useEffect(() => {
-        api.getProducts()
-            .then(res => res.json())
-            .then(data => {
-                setGoods(data.products);
-                setData(data.products);
-            })
-        // console.log("Данные из сервера", data);
-        api.showProfile()
-            .then(res => res.json())
-            .then(data => {
-                console.log("User", data);
-            })
-    }, [])
+        if (token) {
+            api.getProducts()
+                .then(res => res.json())
+                .then(data => {
+                    setGoods(data.products);
+                    setData(data.products);
+                })
+            // console.log("Данные из сервера", data);
+            api.showProfile()
+                .then(res => res.json())
+                .then(data => {
+                    console.log("User", data);
+                })
+        }
+    }, [token])
 
     return <>
         <div className="wrapper">
-            <Header products={data} update={setGoods} openPopup={changePopupActive} user={!!token}/>
+            <Header products={data} update={setGoods} openPopup={changePopupActive} user={!!token} setToken={setToken}/>
             <Catalog goods={goods}/>
+            {/* <Product/> */}
             <Footer/>
         </div>
-        <Modal isActive={popupActive} changeActive={changePopupActive} setToken={setToken()}/>
+        {!token && <Modal isActive={popupActive} changeActive={changePopupActive} setToken={setToken}/>}
     </>
 }
 
