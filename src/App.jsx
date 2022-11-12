@@ -54,7 +54,7 @@ const App = () => {
             <Catalog goods={goods}/>
             <Footer/>
         </div>
-        <Modal isActive={popupActive} changeActive={changePopupActive}/>
+        <Modal isActive={popupActive} changeActive={changePopupActive} setToken={setToken()}/>
     </>
 }
 

@@ -29,7 +29,11 @@ class Api {
 
     }
     showProfile() {
-        // return fetch(`${this.path}/v2/group-7/users/me`)
+        // return fetch(`${this.path}/v2/group-7/users/me`, {
+        //     headers: {
+        //         "Authorization": `Bearer ${this.token}`
+        //     }
+        // })
         return fetch(`${this.path}/users/me`, {
             headers: {
                 "Authorization": `Bearer ${this.token}`
