@@ -50,7 +50,7 @@ const App = () => {
 
     return <>
         <div className="wrapper">
-            <Header products={data} update={setGoods} openPopup={changePopupActive}/>
+            <Header products={data} update={setGoods} openPopup={changePopupActive} user={!!token}/>
             <Catalog goods={goods}/>
             <Footer/>
         </div>
