@@ -22,8 +22,15 @@ class Api {
     delProduct() {
 
     }
-    logIn() { // войти
-
+    logIn(body) { // войти
+        return fetch(`${this.path}/signin`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(body)
+        })
     }
     signUp() { // зарегистрироваться
 

@@ -4,11 +4,20 @@ import {XCircle} from "react-bootstrap-icons";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./style.css";
 
-export default ({isActive, changeActive}) => {
+export default ({isActive, changeActive, api, setToken}) => {
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
     const handler = e => {
         e.preventDefault();
+        api.logIn({"email": email, "password": pwd})
+            .then(res => res.json())
+            .then(data => {
+                localStorage.setItem("shop-user", data.token);
+                setToken(data.token);
+                setEmail("");
+                setPwd("");
+                changeActive(false);
+            })
     }
     return <div className={isActive ? "popup-box active" : "popup-box"}>
         <div className="popup">
