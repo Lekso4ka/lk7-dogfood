@@ -47,6 +47,9 @@ const App = () => {
                 .then(data => {
                     console.log("User", data);
                 })
+        } else {
+            setGoods([]);
+            setData([]);
         }
     }, [api])
 

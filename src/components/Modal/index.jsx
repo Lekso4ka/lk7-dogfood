@@ -17,7 +17,7 @@ export default ({isActive, changeActive, api, setToken}) => {
                 setEmail("");
                 setPwd("");
                 changeActive(false);
-            })
+            });
     }
     return <div className={isActive ? "popup-box active" : "popup-box"}>
         <div className="popup">
