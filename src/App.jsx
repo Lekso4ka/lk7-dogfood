@@ -75,7 +75,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Main/>}/>
                 <Route path="/catalog" element={<Catalog goods={goods}/>}/>
-                <Route path="/product" element={<Product/>}/>
+                <Route path="/product/:id" element={<Product api={api}/>}/>
                 <Route path="/profile" element={<Profile user={user}/>}/>
             </Routes>
             <Footer/>
