@@ -1,4 +1,6 @@
 import React, {useState} from "react";
+import {Link} from "react-router-dom";
+
 import Logo from "../Logo";
 import {BoxArrowInRight, BoxArrowLeft} from "react-bootstrap-icons"
 import "./style.css";
@@ -30,8 +32,8 @@ export default ({products, update, openPopup, user, setToken}) => {
             <input type="search" value={text} onChange={handler}/>
             <nav>
                 {user && <a href=""><FavIcon/></a>}
-                {user && <a href=""><CartIcon/></a>}
-                {user && <a href=""><ProfileIcon/></a>}
+                {user && <Link to="/catalog"><CartIcon/></Link>}
+                {user && <Link to="/profile"><ProfileIcon/></Link>}
                 {user && <a href="" onClick={logout}><BoxArrowLeft style={{fontSize: "1.6rem"}}/></a>}
                 {!user && <a href="" onClick={e => {e.preventDefault(); openPopup(true)}}><BoxArrowInRight style={{fontSize: "1.6rem"}}/></a>}
             </nav>
