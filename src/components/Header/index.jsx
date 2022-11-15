@@ -8,7 +8,7 @@ import {ReactComponent as FavIcon} from "./img/ic-favorites.svg";
 import {ReactComponent as CartIcon} from "./img/ic-cart.svg";
 import {ReactComponent as ProfileIcon} from "./img/ic-profile.svg";
 
-export default ({products, update, openPopup, user, setToken}) => {
+export default ({products, update, openPopup, user, setToken, setUser}) => {
     const [text, changeText] = useState("");
     const [cnt, setCnt] = useState(0);
     const handler = e => {
@@ -24,7 +24,9 @@ export default ({products, update, openPopup, user, setToken}) => {
     const logout = e => {
         e.preventDefault();
         localStorage.removeItem("shop-user");
+        localStorage.removeItem("u");
         setToken("");
+        setUser({});
     }
     return <>
         <header>

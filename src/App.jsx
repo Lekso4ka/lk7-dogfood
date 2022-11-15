@@ -18,7 +18,7 @@ const App = () => {
     const [data, setData] = useState([]);
     const [goods, setGoods] = useState([]);
     const [token, setToken] = useState(Local.getItem("shop-user"));
-    const [user, setUser] = useState(Local.getItem("u"));
+    const [user, setUser] = useState(Local.getItem("u", true));
     const [popupActive, changePopupActive] = useState(false);
     const [api, setApi] = useState(new Api(token));
 
