@@ -24,7 +24,6 @@ const App = () => {
     const [fav, setFav] = useState([]);
 
     useEffect(() => {
-        console.log("user is changed");
         setApi(new Api(token));
     }, [token])
 
@@ -53,13 +52,18 @@ const App = () => {
             api.showProfile()
                 .then(res => res.json())
                 .then(data => {
-                    console.log("User", data);
+                    // console.log("User", data);
                 })
         } else {
             setGoods([]);
             setData([]);
         }
     }, [api])
+
+    useEffect(() => {
+        const f = goods.filter(el => el.likes.includes(user._id))
+        setFav(f);
+    }, [goods])
 
     return <>
         <div className="wrapper">

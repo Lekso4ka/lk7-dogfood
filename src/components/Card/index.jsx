@@ -4,14 +4,13 @@ import {Heart, HeartFill} from "react-bootstrap-icons";
 import "./style.css";
 import Local from "../../Local";
 
-const Card = ({name, price, pictures, _id, likes, api}) => {
+const Card = ({name, price, pictures, _id, likes, api, setFav}) => {
     const [like, setLike] = useState(false);
     const imgStyle = {
         backgroundImage: `url(${pictures})`
     };
     useEffect(() => {
         let id = Local.getItem("u", true)._id;
-        console.log(id);
         // Найти мое id в сиске с likes
         if (likes.includes(id)) {
             setLike(true);
@@ -27,6 +26,12 @@ const Card = ({name, price, pictures, _id, likes, api}) => {
         api.setLike(_id, !like)
             .then(res => res.json())
             .then(data => {
+                console.log(data, like);
+                if (!like) {
+                    setFav(prev => {return [...prev, data]})
+                } else {
+                    setFav(prev => prev.filter(el => el._id !== _id))
+                }
                 console.log(data);
             })
     }

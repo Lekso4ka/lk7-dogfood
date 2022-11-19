@@ -8,7 +8,7 @@ import {ReactComponent as FavIcon} from "./img/ic-favorites.svg";
 import {ReactComponent as CartIcon} from "./img/ic-cart.svg";
 import {ReactComponent as ProfileIcon} from "./img/ic-profile.svg";
 
-export default ({products, update, openPopup, user, setToken, setUser}) => {
+export default ({products, update, openPopup, user, setToken, setUser, likes}) => {
     const [text, changeText] = useState("");
     const [cnt, setCnt] = useState(0);
     const handler = e => {
@@ -33,7 +33,7 @@ export default ({products, update, openPopup, user, setToken, setUser}) => {
             <Logo/>
             <input type="search" value={text} onChange={handler}/>
             <nav>
-                {user && <a href=""><FavIcon/></a>}
+                {user && <a href=""><FavIcon/><span>{likes}</span></a>}
                 {user && <Link to="/catalog"><CartIcon/></Link>}
                 {user && <Link to="/profile"><ProfileIcon/></Link>}
                 {user && <a href="" onClick={logout}><BoxArrowLeft style={{fontSize: "1.6rem"}}/></a>}
