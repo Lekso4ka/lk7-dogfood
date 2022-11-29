@@ -26,7 +26,7 @@ const App = () => {
     const [api, setApi] = useState(new Api(token));
     const [fav, setFav] = useState([]);
     const [products, setProducts] = useState([]);
-    const [searchText, search] = useState("=)");
+    const [searchText, search] = useState("");
 
     useEffect(() => {
         setApi(new Api(token));
@@ -72,14 +72,16 @@ const App = () => {
     }, [goods])
 
     return <Context.Provider value={{
-        products: products,
+        goods: goods,
+        products: products, // фильтрация поиска
         searchText: searchText,
-        setProducts: setProducts,
-        search: search
+        setProducts: setProducts, 
+        search: search,
+        api: api,
+        setApi: setApi
     }}>
         <div className="wrapper">
             <Header 
-                update={setGoods} 
                 openPopup={changePopupActive} 
                 user={!!token} 
                 setToken={setToken}
@@ -90,8 +92,8 @@ const App = () => {
             {/* <Product/> */}
             <Routes>
                 <Route path="/" element={<Main/>}/>
-                <Route path="/catalog" element={<Catalog goods={goods} setFav={setFav} api={api}/>}/>
-                <Route path="/product/:id" element={<Product api={api}/>}/>
+                <Route path="/catalog" element={<Catalog setFav={setFav}/>}/>
+                <Route path="/product/:id" element={<Product />}/>
                 <Route path="/profile" element={<Profile user={user}/>}/>
             </Routes>
             <Footer/>
@@ -99,8 +101,7 @@ const App = () => {
         {!token && <Modal 
             isActive={popupActive} 
             changeActive={changePopupActive} 
-            setToken={setToken} 
-            api={api} 
+            setToken={setToken}
             setUser={setUser} 
         />}
     </Context.Provider>

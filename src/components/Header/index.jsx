@@ -8,13 +8,11 @@ import {ReactComponent as FavIcon} from "./img/ic-favorites.svg";
 import {ReactComponent as CartIcon} from "./img/ic-cart.svg";
 import {ReactComponent as ProfileIcon} from "./img/ic-profile.svg";
 
-export default ({update, openPopup, user, setToken, setUser, likes}) => {
-    const {searchText, search, setProducts, products} = useContext(Context);
-    const [cnt, setCnt] = useState(0);
+export default ({openPopup, user, setToken, setUser, likes}) => {
+    const {searchText, search, setProducts, goods} = useContext(Context);
     const handler = e => {
         search(e.target.value);
-        const result = products.filter((el => el.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1));
-        setCnt(result.length);
+        const result = goods.filter((el => el.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1));
         setProducts(result);
     }
     const logout = e => {
@@ -36,8 +34,5 @@ export default ({update, openPopup, user, setToken, setUser, likes}) => {
                 {!user && <a href="" onClick={e => {e.preventDefault(); openPopup(true)}}><BoxArrowInRight style={{fontSize: "1.6rem"}}/></a>}
             </nav>
         </header>
-        <div>
-            {searchText ? `По запросу ${searchText} найдено ${cnt} позиций` : "Поиск..."}
-        </div>
     </>
 }

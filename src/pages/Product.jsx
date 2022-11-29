@@ -1,4 +1,5 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
+import { Context } from "../App";
 import { useParams } from "react-router-dom";
 import data from "../assets/data.json";
 import {Container, Row, Col, Figure, Table, ButtonGroup, Button} from "react-bootstrap";
@@ -15,7 +16,8 @@ import {Container, Row, Col, Figure, Table, ButtonGroup, Button} from "react-boo
 //     "picture": "https://react-learning.ru/image-compressed/1.jpg",
 //     "tags": ["new"]
 // },
-export default ({api}) => {
+export default () => {
+    const {api} = useContext(Context);
     let p = data[0];
     const [product, setProduct] = useState({});
     const [cnt, setCnt] = useState(0);

@@ -1,10 +1,12 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext} from "react";
+import { Context } from "../../App";
 import {Link} from "react-router-dom";
 import {Heart, HeartFill} from "react-bootstrap-icons";
 import "./style.css";
 import Local from "../../Local";
 
-const Card = ({name, price, pictures, _id, likes, api, setFav}) => {
+const Card = ({name, price, pictures, _id, likes, setFav}) => {
+    const {api} = useContext(Context);
     const [like, setLike] = useState(false);
     const imgStyle = {
         backgroundImage: `url(${pictures})`
