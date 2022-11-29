@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import {Link} from "react-router-dom";
-
+import { Context } from "../../App";
 import Logo from "../Logo";
 import {BoxArrowInRight, BoxArrowLeft} from "react-bootstrap-icons"
 import "./style.css";
@@ -8,18 +8,14 @@ import {ReactComponent as FavIcon} from "./img/ic-favorites.svg";
 import {ReactComponent as CartIcon} from "./img/ic-cart.svg";
 import {ReactComponent as ProfileIcon} from "./img/ic-profile.svg";
 
-export default ({products, update, openPopup, user, setToken, setUser, likes}) => {
-    const [text, changeText] = useState("");
+export default ({update, openPopup, user, setToken, setUser, likes}) => {
+    const {searchText, search, setProducts, products} = useContext(Context);
     const [cnt, setCnt] = useState(0);
     const handler = e => {
-        changeText(e.target.value);
+        search(e.target.value);
         const result = products.filter((el => el.name.toLowerCase().search(e.target.value.toLowerCase()) !== -1));
         setCnt(result.length);
-        if (!text) {
-            update(products);
-        } else {
-            update(result);
-        }
+        setProducts(result);
     }
     const logout = e => {
         e.preventDefault();
@@ -31,7 +27,7 @@ export default ({products, update, openPopup, user, setToken, setUser, likes}) =
     return <>
         <header>
             <Logo/>
-            <input type="search" value={text} onChange={handler}/>
+            <input type="search" value={searchText} onChange={handler}/>
             <nav>
                 {user && <a href=""><FavIcon/><span>{likes}</span></a>}
                 {user && <Link to="/catalog"><CartIcon/></Link>}
@@ -41,7 +37,7 @@ export default ({products, update, openPopup, user, setToken, setUser, likes}) =
             </nav>
         </header>
         <div>
-            {text ? `По запросу ${text} найдено ${cnt} позиций` : "Поиск..."}
+            {searchText ? `По запросу ${searchText} найдено ${cnt} позиций` : "Поиск..."}
         </div>
     </>
 }

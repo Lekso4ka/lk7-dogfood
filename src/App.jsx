@@ -14,6 +14,9 @@ import Local from "./Local.js";
 // import "bootstrap/dist/css/bootstrap.min.css";
 // import { Container, Row, Col } from "react-bootstrap";
 
+const Context = React.createContext({});
+
+
 const App = () => {
     const [data, setData] = useState([]);
     const [goods, setGoods] = useState([]);
@@ -22,6 +25,8 @@ const App = () => {
     const [popupActive, changePopupActive] = useState(false);
     const [api, setApi] = useState(new Api(token));
     const [fav, setFav] = useState([]);
+    const [products, setProducts] = useState([]);
+    const [searchText, search] = useState("=)");
 
     useEffect(() => {
         setApi(new Api(token));
@@ -63,12 +68,17 @@ const App = () => {
     useEffect(() => {
         const f = goods.filter(el => el.likes.includes(user._id))
         setFav(f);
+        setProducts(goods);
     }, [goods])
 
-    return <>
+    return <Context.Provider value={{
+        products: products,
+        searchText: searchText,
+        setProducts: setProducts,
+        search: search
+    }}>
         <div className="wrapper">
             <Header 
-                products={data} 
                 update={setGoods} 
                 openPopup={changePopupActive} 
                 user={!!token} 
@@ -93,7 +103,7 @@ const App = () => {
             api={api} 
             setUser={setUser} 
         />}
-    </>
+    </Context.Provider>
 }
 
-export default App;
+export {App, Context};
