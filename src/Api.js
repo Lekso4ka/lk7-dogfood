@@ -17,8 +17,15 @@ class Api {
             }
         })
     }
-    addProduct() {
-
+    addProduct(body) {
+        return fetch(`${this.path}/products/`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${this.token}`
+            },
+            body: JSON.stringify(body)
+        })
     }
     updProduct() {
 
