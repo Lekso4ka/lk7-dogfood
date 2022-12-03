@@ -22,17 +22,3 @@ a {
 	grid-template-columns: repeat(4, 1fr);
 	gap: 30px;
 }
-
-
-.product__row {
-	position: relative;
-	display: flex;
-	align-items: center;
-	gap: 10px;
-}
-.product__btn {
-	cursor: pointer;
-}
-.product__inp {
-	border: 1px solid silver;
-}
