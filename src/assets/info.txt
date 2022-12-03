@@ -6,3 +6,13 @@
     goods => filter => fav
 2) В шапке сайта отображается количество любимых товаром (моих)
 3) При нажатии на сердечко в карточке - изменяется шапка и массив с фаворитами
+
+
+Повторить то же самое n раз
+
+pictures => img => Ссылка на картинку => input (text)
+name => h1 => Название товара => input (text)
+price => div => Цена товара => input (number)
+discount => div => Процент скидки => select
+wight => div => Вес => input (text)
+description => p => Описание => textarea

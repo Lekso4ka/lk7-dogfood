@@ -6,6 +6,7 @@ import Catalog from "./pages/Catalog";
 import Main from "./pages/Main";
 import Profile from "./pages/Profile";
 import AddProduct from "./pages/AddProduct";
+import Single from "./pages/Single";
 
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -97,7 +98,8 @@ const App = () => {
                 <Route path="/" element={<Main/>}/>
                 <Route path="/add" element={<AddProduct/>}/>
                 <Route path="/catalog" element={<Catalog setFav={setFav}/>}/>
-                <Route path="/product/:id" element={<Product />}/>
+                {/* <Route path="/product/:id" element={<Product />}/> */}
+                <Route path="/product/:id" element={<Single />}/>
                 <Route path="/profile" element={<Profile user={user}/>}/>
             </Routes>
             <Footer/>

@@ -27,8 +27,15 @@ class Api {
             body: JSON.stringify(body)
         })
     }
-    updProduct() {
-
+    updProduct(id, body) {
+        return fetch(`${this.path}/products/${id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${this.token}`
+            },
+            body: JSON.stringify(body)
+        })
     }
     delProduct() {
 
