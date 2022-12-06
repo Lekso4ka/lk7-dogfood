@@ -8,14 +8,11 @@ import { useEffect } from "react";
 
 export default ({setFav}) => {
     const { searchText, products, goods} = useContext(Context);
-    const paginate = usePagination(products, 4);
-    useEffect(() => {
-        console.log(paginate.maxPage);
-    }, []);
+    const paginate = usePagination(products, 8);
     return <>
         <div className="cards-container">
-            {!searchText && goods.length > 0 &&
-                goods.map((d, i) => <Card 
+            {!searchText && products.length > 0 &&
+                paginate.pageData().map((d, i) => <Card 
                     key={i}
                     {...d}
                     setFav={setFav}
@@ -27,17 +24,12 @@ export default ({setFav}) => {
                     : <> По запросу <b>{searchText}</b> товаров не найдено</>
                 }
             </div>}
-            {searchText && products.map((d, i) => <Card 
+            {searchText && paginate.pageData().map((d, i) => <Card 
                 key={i}
                 {...d}
                 setFav={setFav}
             />)}
         </div>
-        <div>
-            <button onClick={() => {paginate.prev()}}>&lt;</button>
-            <button onClick={() => {paginate.next()}}>&gt;</button>
-        </div>
         <Pagination hook={paginate}/>
-
     </>
 }

@@ -34,5 +34,16 @@ export default (data, cnt) => {
         setPage(Math.max(1, Math.min(p, maxPage)));
         console.log(Math.max(1, Math.min(p, maxPage)))
     }
-    return {next, prev, change, maxPage}; // {next: function() {...}}
+
+    const pageData = () => {
+        const start = (page - 1) * cnt; // 0-n
+        /*
+            page 1 (4)  start = 0
+            page 2      start = 4
+            page 3      start = 8
+        */
+        const end = start + cnt;
+        return data.slice(start, end);
+    }
+    return {next, prev, change, maxPage, page, pageData}; // {next: function() {...}}
 }

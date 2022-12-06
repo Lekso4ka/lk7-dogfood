@@ -1,5 +1,5 @@
 import React, {useState, useContext} from "react";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import { Context } from "../../App";
 import Logo from "../Logo";
 import {BoxArrowInRight, BoxArrowLeft, PlusCircle} from "react-bootstrap-icons"
@@ -9,6 +9,7 @@ import {ReactComponent as CartIcon} from "./img/ic-cart.svg";
 import {ReactComponent as ProfileIcon} from "./img/ic-profile.svg";
 
 export default ({openPopup, user, setToken, setUser, likes}) => {
+    const nav = useNavigate();
     const {searchText, search, setProducts, goods} = useContext(Context);
     const handler = e => {
         search(e.target.value);
@@ -21,6 +22,7 @@ export default ({openPopup, user, setToken, setUser, likes}) => {
         localStorage.removeItem("u");
         setToken("");
         setUser({});
+        nav("/");
     }
     return <>
         <header>

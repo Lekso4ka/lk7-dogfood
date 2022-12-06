@@ -13,14 +13,19 @@ export default ({hook}) => {
     return <div className="pagination">
         <button 
             onClick={hook.prev}
+            disabled={hook.page === 1}
         >&lt;</button>
         {pages.map(p => <button 
             key={p} 
             onClick={() => {hook.change(p)}}
+            style={{
+                backgroundColor: hook.page === p ? "var(--main-color)": "initial"
+            }}
         >{p}</button>)}
         {/* <button onClick={() => {hook.change(8)}}>8</button> */}
         <button 
             onClick={hook.next}
+            disabled={hook.page === hook.maxPage}
         >&gt;</button>
     </div>
 }
